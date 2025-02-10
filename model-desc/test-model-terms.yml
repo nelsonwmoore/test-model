@@ -1,0 +1,23 @@
+Terms:
+  case_term:
+    Value: case
+    Origin: CTDC
+  subject:
+    Value: subject
+    Origin: caDSR
+  of_case_dx_case_term:
+    Value: of_case
+    Origin: Booga
+  of_case_term:
+    Value: of_case
+    Origin: CTDC
+  case_id:
+    Value: case_id
+    Origin: CTDC
+  normal:
+    Value: normal
+    Origin: test
+  tumor:
+    Value: tumor
+    Origin: test
+    

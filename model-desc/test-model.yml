@@ -1,0 +1,67 @@
+Handle: TEST
+Version: 0.0.1
+Nodes:
+  case:
+    Tags:
+      this: that
+    Props:
+      - case_id
+      - patient_id
+    Term:
+      - Handle: case_term
+        Value: case
+        Origin: CTDC
+      - Value: subject
+        Origin: caDSR
+  sample:
+    Props:
+      - sample_type
+      - amount
+  file:
+    Props:
+      - md5sum
+      - file_name
+      - file_size
+  diagnosis:
+    Props:
+      - disease
+      - date_of_dx
+Relationships:
+  of_case:
+    Props:
+      - days_to_sample
+    Mul: one_to_one
+    Ends:
+      - Src: sample
+        Dst: case
+        Mul: many_to_one
+      - Src: diagnosis
+        Dst: case
+        Term:
+          - Handle: 'of_case_dx_case_term'
+            Value: 'of_case'
+            Origin: 'Booga'
+    Term:
+      - Handle: 'of_case_term'
+        Value: 'of_case'
+        Origin: 'CTDC'
+  of_sample:
+    Props: ~
+    Mul: one_to_one
+    Ends:
+      - Src: file
+        Dst: sample
+        Mul: many_to_many
+  derived_from:
+    Tags:
+      item1: value1
+      item2: value2
+    Mul: one_to_many
+    Props:
+      - workflow_id
+      - id
+    Ends:
+      - Src: file
+        Dst: file
+      - Src: sample
+        Dst: sample
